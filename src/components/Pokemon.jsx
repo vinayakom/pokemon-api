@@ -5,8 +5,7 @@ export const Pokemon = () => {
 
     const [apiData, setApiData] = useState(null);
 
-    //const API = "https://pokeapi.co/api/v2/pokemon/pikachu";
-    const API = "https://jsonplaceholder.typicode.com/posts";
+    const API = "https://pokeapi.co/api/v2/pokemon/pikachu";    
 
     const fetchPokemonData = () => {
         fetch(API)
@@ -29,7 +28,7 @@ export const Pokemon = () => {
             <ul className="card-demo">
                 <li className="pokemon-card">
                     <figure>
-                        
+
                     </figure>
                 </li>
             </ul>
