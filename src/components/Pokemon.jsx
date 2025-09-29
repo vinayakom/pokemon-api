@@ -22,14 +22,17 @@ export const Pokemon = () => {
     }, []);
 
     return (
-        <div className="container effect-container">
-            <ul>Data:
-                {
-                    apiData.map((currData) => {
-                        return <li key={currData.id}> {currData.title} </li>
-                    })
-                }
+        <section className="container">
+            <header>
+                <h1>Lets catch Pokemon</h1>
+            </header>
+            <ul className="card-demo">
+                <li className="pokemon-card">
+                    <figure>
+                        
+                    </figure>
+                </li>
             </ul>
-        </div>
+        </section>
     );
 };
