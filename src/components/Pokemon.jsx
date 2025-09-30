@@ -3,15 +3,15 @@ import "./Pokemon.css"
 
 export const Pokemon = () => {
 
-    const [apiData, setApiData] = useState(null);
+    const [pokemon, setPokemon] = useState(null);
 
-    const API = "https://pokeapi.co/api/v2/pokemon/pikachu";    
+    const API = "https://pokeapi.co/api/v2/pokemon/pikachu";
 
     const fetchPokemonData = () => {
         fetch(API)
             .then((res) => res.json())
             .then((data) => {
-                setApiData(data);
+                setPokemon(data);
             })
             .catch((error) => console.log(error))
     };
@@ -20,6 +20,16 @@ export const Pokemon = () => {
         fetchPokemonData();
     }, []);
 
+    console.log(pokemon);
+
+    if (!pokemon)
+        return (
+            <div>
+                <h1>Loading....</h1>
+            </div>
+        );
+
+
     return (
         <section className="container">
             <header>
@@ -27,7 +37,14 @@ export const Pokemon = () => {
             </header>
             <ul className="card-demo">
                 <li className="pokemon-card">
-                    <figure></figure>
+                    <figure>
+                        <img
+                            src={pokemon.sprites.other.dream_world.front_default}
+                            alt={pokemon.name}
+                            className="pokemon-image"
+                        />
+                    </figure>
+                    <h1>{pokemon.name}</h1>
                 </li>
             </ul>
         </section>
