@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import "./Pokemon.css"
+import "./PokemonTest.css"
 
-export const Pokemon = () => {
+export const PokemonTest = () => {
 
     const [pokemon, setPokemon] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const API = "https://pokeapi.co/api/v2/pokemon/pikachu";
+    const API = "https://pokeapi.co/api/v2/pokemon/pikachu";    
 
     // Using promises
     // const fetchPokemonData = () => {

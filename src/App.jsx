@@ -1,9 +1,5 @@
-import { Pokemon } from "./components/Pokemon";
+import { Pokemon } from "./Pokemon";
 
 export const App = () => {
-  return (
-    <section>
-      <Pokemon />
-    </section>
-  );
+  return <Pokemon />;
 };
