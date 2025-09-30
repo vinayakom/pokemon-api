@@ -27,9 +27,7 @@ export const Pokemon = () => {
             </header>
             <ul className="card-demo">
                 <li className="pokemon-card">
-                    <figure>
-
-                    </figure>
+                    <figure></figure>
                 </li>
             </ul>
         </section>
