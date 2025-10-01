@@ -3,11 +3,10 @@ import "./index.css"
 
 export const Pokemon = () => {
 
-    const [pokemon, setPokemon] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const API = "https://pokeapi.co/api/v2/pokemon?limit=24";    
+    const API = "https://pokeapi.co/api/v2/pokemon?limit=24";
 
     const fetchPokemonData = async () => {
         try {
@@ -16,7 +15,17 @@ export const Pokemon = () => {
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
             const data = await res.json();
-            setPokemon(data);
+
+            const detailedPokemonData = data.results.map(async (currentDataGroup) => {
+                const responseCurrentData = await fetch(currentDataGroup.url);
+                if (!responseCurrentData.ok) {
+                    throw new Error(`HTTP error! Status: ${responseCurrentData.status}`);
+                }
+                const currentDataObject = await responseCurrentData.json();
+                
+                return currentDataObject;
+            })
+
         } catch (error) {
             setError(error);
             console.log(error);
@@ -28,8 +37,6 @@ export const Pokemon = () => {
     useEffect(() => {
         fetchPokemonData();
     }, []);
-
-    console.log(pokemon);
 
     // Initial loading stage
     if (loading)
@@ -51,7 +58,7 @@ export const Pokemon = () => {
         <section className="container">
             <header>
                 <h1>Poke Poke Pokemon !!</h1>
-            </header>            
+            </header>
         </section>
     );
 };
