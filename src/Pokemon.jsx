@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { PokemonCards } from "./PokemonCards";
 import "./index.css"
+
 
 export const Pokemon = () => {
 
@@ -66,7 +68,7 @@ export const Pokemon = () => {
                 <ul className="cards">
                     {
                         pokemon.map((currentPokemon) => {
-                            return <li key={currentPokemon.id}>{currentPokemon.name}</li>
+                            return <PokemonCards key={currentPokemon.id} pokemonData={currentPokemon} />
                         })
                     }
                 </ul>
