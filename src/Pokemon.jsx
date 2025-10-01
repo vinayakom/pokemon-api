@@ -3,6 +3,7 @@ import "./index.css"
 
 export const Pokemon = () => {
 
+    const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -22,10 +23,12 @@ export const Pokemon = () => {
                     throw new Error(`HTTP error! Status: ${responseCurrentData.status}`);
                 }
                 const currentDataObject = await responseCurrentData.json();
-                
                 return currentDataObject;
-            })
+            });
 
+            const detailedResponses = await Promise.all(detailedPokemonData);
+            console.log(detailedResponses);
+            setPokemon(detailedResponses);
         } catch (error) {
             setError(error);
             console.log(error);
@@ -59,6 +62,15 @@ export const Pokemon = () => {
             <header>
                 <h1>Poke Poke Pokemon !!</h1>
             </header>
+            <div>
+                <ul className="cards">
+                    {
+                        pokemon.map((currentPokemon) => {
+                            return <li key={currentPokemon.id}>{currentPokemon.name}</li>
+                        })
+                    }
+                </ul>
+            </div>
         </section>
     );
 };
